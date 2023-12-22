@@ -1,0 +1,14 @@
+{
+  "name": "ktex-spec",
+  "module": "src/index.js",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "spec-md": "^3.1.0"
+  }
+}
