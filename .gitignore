@@ -1,4 +1,5 @@
-TODO
 node_modules/
+public/
+tmp/
 *.lockb
 *.log

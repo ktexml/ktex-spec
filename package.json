@@ -1,7 +1,23 @@
 {
   "name": "ktex-spec",
-  "type": "module",
-  "dependencies": {
+  "private": true,
+  "contributors": [
+    "Dimitri Kurashvili <dimakura@gmail.com> (https://nextbook.ge)"
+  ],
+  "scripts": {
+    "test": "bun run test:spelling && bun run test:build && bun run test:format",
+    "test:format": "prettier --check \"**/*.{md,yml,yaml,json}\"",
+    "test:build": "spec-md spec/KTex.md > /dev/null",
+    "test:spelling": "cspell \"spec/**/*.md\" README.md",
+    "format": "prettier --write \"**/*.{md,yml,yaml,json}\"",
+    "build": "bin/build.sh"
+  },
+  "devDependencies": {
+    "cspell": "^8.2.3",
+    "prettier": "^3.1.1",
     "spec-md": "^3.1.0"
+  },
+  "prettier": {
+    "proseWrap": "always"
   }
 }
