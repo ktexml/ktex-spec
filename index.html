@@ -12,18 +12,56 @@
 <header>
 <h1>KTex</h1>
 <section id="intro">
-<p><em>Current Working Draft</em></p>
+<p><em>Working Draft</em></p>
 <section id="sec-Introduction" class="subsec">
 <h6><a href="#sec-Introduction" title="link to this subsection">Introduction</a></h6>
-<p>KTex is a markup language created to simplify the process of creating and publishing literary, scientific, and engineering work. </p>
+<p>KTex is an extensible markup language, specifically designed to simplify the process of creating and publishing text across diverse domains and formats.</p>
+</section>
+<section id="sec-Copyright" class="subsec">
+<h6><a href="#sec-Copyright" title="link to this subsection">Copyright</a></h6>
+<p>Copyright © 2023-present, Dimitri Kurashvili</p>
 </section>
 </section>
 <nav class="spec-toc">
 <div class="title">Contents</div>
 <ol>
+<li><a href="#sec-Overview"><span class="spec-secid">1</span>Overview</a><ol>
+<li><a href="#sec-Problems"><span class="spec-secid">1.1</span>Problems</a><ol>
+<li><a href="#sec-Single-Base"><span class="spec-secid">1.1.1</span>Single Base</a></li>
+<li><a href="#sec-Extensibility"><span class="spec-secid">1.1.2</span>Extensibility</a></li>
+<li><a href="#sec-Modularity"><span class="spec-secid">1.1.3</span>Modularity</a></li>
+<li><a href="#sec-Writing-Style"><span class="spec-secid">1.1.4</span>Writing Style</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 </nav>
 </header>
+<section id="sec-Overview" secid="1">
+<h1><span class="spec-secid" title="link to this section"><a href="#sec-Overview">1</a></span>Overview</h1>
+<p>KTex is an extensible markup language that simplifies the process of preparing texts for publication.</p>
+<section id="sec-Problems" secid="1.1">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Problems">1.1</a></span>Problems</h2>
+<p>Before delving into the specifics, let&rsquo;s first explore the primary problems that KTex aims to resolve. These problems help illustrate the key features of KTex and reflect the fundamental design principles that guide its development.</p>
+<section id="sec-Single-Base" secid="1.1.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Single-Base">1.1.1</a></span>Single Base</h3>
+<p>The first problem that KTex aims to address is providing publishers with a single, reliable base to manage various publication formats, each with its unique requirements. The benefits of having a unified base for all publications are evident: it eases proofreading, guarantees uniformity across formats, and saves time and resources.</p>
+</section>
+<section id="sec-Extensibility" secid="1.1.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Extensibility">1.1.2</a></span>Extensibility</h3>
+<p>Publishers frequently have specific requirements, including unique fonts, text styling, and layouts. KTex is not a fixed markup language; rather, it functions as a flexible framework that can be expanded to accommodate a wide range of needs.</p>
+</section>
+<section id="sec-Modularity" secid="1.1.3">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Modularity">1.1.3</a></span>Modularity</h3>
+<p>KTex is modular by design. Publishers can use external modules to further enhance KTex, or develop their own modules for use across different KTex projects or for sharing with other publishers. In fact, the core of KTex is primarily a collection of modules, with only a minimal layer of immutable code.</p>
+</section>
+<section id="sec-Writing-Style" secid="1.1.4">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Writing-Style">1.1.4</a></span>Writing Style</h3>
+<p>KTex simplifies the task of ensuring a consistent writing style across publications. For instance, if a publisher requires the use of the Oxford comma in all publications, this can be readily enforced by integrating the <code>ktex-chicago-style</code> module. This module alone offers thousands of checks, all of which can be enabled or disabled according to preference. </p>
+</section>
+</section>
+</section>
 </article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
@@ -31,7 +69,21 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <div class="spec-sidebar" aria-hidden>
 <div class="spec-toc">
 <div class="title"><a href="#">KTex</a></div>
-<ol></ol>
+<ol><li id="_sidebar_1"><a href="#sec-Overview"><span class="spec-secid">1</span>Overview</a>
+<input hidden class="toggle" type="checkbox" id="_toggle_1" /><label for="_toggle_1"></label>
+<ol>
+<li id="_sidebar_1.1"><a href="#sec-Problems"><span class="spec-secid">1.1</span>Problems</a>
+<input hidden class="toggle" type="checkbox" id="_toggle_1.1" /><label for="_toggle_1.1"></label>
+<ol>
+<li id="_sidebar_1.1.1"><a href="#sec-Single-Base"><span class="spec-secid">1.1.1</span>Single Base</a></li>
+<li id="_sidebar_1.1.2"><a href="#sec-Extensibility"><span class="spec-secid">1.1.2</span>Extensibility</a></li>
+<li id="_sidebar_1.1.3"><a href="#sec-Modularity"><span class="spec-secid">1.1.3</span>Modularity</a></li>
+<li id="_sidebar_1.1.4"><a href="#sec-Writing-Style"><span class="spec-secid">1.1.4</span>Writing Style</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 </div>
 </div>
 </body>
