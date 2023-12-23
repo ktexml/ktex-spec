@@ -28,3 +28,20 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install
       - run: bun run test:build
+  publish:
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - test-spelling
+      - test-format
+      - test-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - run: bun run build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
