@@ -10,10 +10,12 @@
     "test:build": "spec-md spec/KTex.md > /dev/null",
     "test:spelling": "cspell \"spec/**/*.md\" README.md",
     "format": "prettier --write \"**/*.{md,yml,yaml,json}\"",
-    "build": "bin/build.sh"
+    "build": "bin/build.sh",
+    "watch": "nodemon -e md,json -x \"npm run build\""
   },
   "devDependencies": {
     "cspell": "^8.2.3",
+    "nodemon": "^3.0.2",
     "prettier": "^3.1.1",
     "spec-md": "^3.1.0"
   },
