@@ -29,7 +29,7 @@ jobs:
       - run: bun install
       - run: bun run test:build
   publish:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     needs:
       - test-spelling
       - test-format
