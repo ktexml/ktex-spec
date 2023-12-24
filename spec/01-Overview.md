@@ -37,5 +37,5 @@ primarily a collection of modules, with only a minimal layer of immutable code.
 KTex simplifies the task of ensuring a consistent writing style across
 publications. For instance, if a publisher requires the use of the Oxford comma
 in all publications, this can be readily enforced by integrating the
-`ktex-chicago-style` module. This module alone offers thousands of checks, all
-of which can be enabled or disabled according to preference.
+`ktex-chicago-style` module. This module alone offers thousands of other checks,
+all of which can be enabled or disabled according to preference.
