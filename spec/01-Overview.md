@@ -3,11 +3,12 @@
 KTex is an extensible markup language that simplifies the process of preparing
 texts for publication.
 
-## Problems
+## Design Principles
 
 Before delving into the specifics, let's first explore the primary problems that
-KTex aims to resolve. These problems help illustrate the key features of KTex
-and reflect the fundamental design principles that guide its development.
+KTex aims to resolve. These problems, in turn, help to illustrate the key
+features of KTex and reflect the fundamental design principles that guide its
+development.
 
 ### Single Base
 
