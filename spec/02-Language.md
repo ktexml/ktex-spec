@@ -1,8 +1,7 @@
 # Language
 
-Clients use the KTex markup language to prepare texts for publication. We refer
-to such texts as source documents. A document is built from a sequence of
-blocks, which optionally use operators to modify their content.
+The KTex markup language is used to prepare document. A document is built from a
+sequence of blocks, which are built using operators.
 
 The source text of a KTex document must be a sequence of {SourceCharacter}s.
 These characters must be described by a sequence of {Token} lexical grammars.
@@ -12,86 +11,51 @@ The lexical token sequence, omitting {Ignored}, must be described by a single
 **Lexical Analysis and Syntax Parse**
 
 The source text of a KTex document is first converted into a sequence of lexical
-tokens, {Token}, and ignored tokens, {Ignored}. The source text is scanned from
-left to right, repeatedly taking the next possible sequence of code-points
-allowed by the lexical grammar productions as the next token. This sequence of
-lexical tokens are then scanned from left to right to produce an abstract syntax
-tree (AST) according to the {Document} syntactical grammar.
+tokens, {Token}, and ignored tokens, {Ignored}. This sequence of lexical tokens
+are then scanned from left to right to produce an abstract syntax tree (AST)
+according to the {Document} syntactical grammar.
 
-Lexical grammar productions in this document use lookahead restrictions to
-remove ambiguity and ensure a single valid lexical analysis. A lexical token is
-only valid if not followed by a character in its lookahead restriction.
+In this document, lexical grammar productions employ lookahead restrictions to
+eliminate ambiguity and guarantee a singular, valid lexical analysis. Moreover,
+the production of lexical grammar is influenced by the value of these two flags:
 
-In addition, lexical grammar production is sensitive to the _context_, or
-current state, of the lexer. Lexer context has the following properties:
-
-- `isLineStart`, a `Boolean` flag, which is set to `true` at the start of a new
-  line. This property is not turned off until an encounter with a non-whitespace
-  character.
-- `isOperator`, a `Boolean` flag, which is set to `true` only within "operator
-  context" (explained later).
+- `isLineStart`: a `Boolean` flag set to `true` at the beginning of a new line.
+  This property remains active until a non-whitespace character is encountered.
+- `isOperator`: a `Boolean` flag set to `true` only within an "operator context"
+  (explained later).
 
 ## Source Text
 
 SourceCharacter :: "Any UTF-8 character"
 
-KTex documents are interpreted from a source text, which is a sequence of
-{SourceCharacter}, each {SourceCharacter} being a UTF-8 character, informally
-referred to as a _"character"_ through most of this specification.
+KTex documents are derived from a source text, composed of a sequence of
+{SourceCharacter}s. Each {SourceCharacter} represents a UTF-8 character, which
+is informally referred to as a "_character_" throughout this specification.
 
-### White Space
+### Ignored Tokens
 
-WhiteSpace ::
+Ignored ::
 
-- [if not isOperator] "Horizontal Tab (0x09)"
-- [if not isOperator] "Space (0x20)"
+- UnicodeBOM
+- Comment
 
-InsignificantWhiteSpace ::
-
-- [if isOperator] "Horizontal Tab (0x09)"
-- [if isOperator] "Space (0x20)"
-
-TODO: review this definition
-
-White space is used to separate {Word}s and improve legibility of source text
-and act as separator between tokens, and any amount of white space may appear
-before or after any token. White space tokens usually are not significant to the
-semantic meaning of a KTex {Document}, however white space characters may appear
-within a {String} or {Comment} token, and are significant within _"preserving"_
-blocks.
-
-### Line Terminator
-
-LineTerminator ::
-
-- [if not isOperator] "New Line (0x0A)"
-- [if not isOperator] "Carriage Return (0x0D)" [lookahead != "New Line (0x0A)"]
-- [if not isOperator] "Carriage Return (0x0D)" "New Line (0x0A)"
-
-InsignificantLineTerminator ::
-
-- [if isOperator] "New Line (0x0A)"
-- [if isOperator] "Carriage Return (0x0D)" [lookahead != "New Line (0x0A)"]
-- [if isOperator] "Carriage Return (0x0D)" "New Line (0x0A)"
-
-Line terminators are used to split text into lines and two, or more, consecutive
-line terminators are treated as separators between blocks. Single line
-terminator is insignificant for _"floating"_ blocks, but significant for
-_"line-preserving"_ and _"preserving"_ blocks.
+UnicodeBOM :: "Byte Order Mark (0xFEFF)"
 
 ### Comment
 
-Comment :: CommentStart CommentCharacter\* [lookahead != CommentCharacter]
+Comment :: [if isLineStart] CommentStart CommentCharacter\* [lookahead !=
+CommentCharacter]
 
 CommentCharacter :: SourceCharacter but not LineTerminator
 
-CommentStart :: `%` "when" context.isLineStart "is" true
+CommentStart :: `%`
 
-A line in KTex source documents may be transformed into a comment, by putting
-{`%`} marker at the start of the line. Note, that leading white space characters
-before the {`%`} marker does not affect the comment. But if the {`%`} marker is
-preceded by any number non-whitespace characters, then the {`%`} marker and the
-rest of the line is treated as a normal text.
+In KTex source documents, a line can be converted into a comment by placing a
+{`%`} marker at the beginning of the line. It's important to note that leading
+whitespace characters before the {`%`} marker do not influence the comment.
+However, if the {`%`} marker is preceded by any number of non-whitespace
+characters, then the {`%`} marker and the remainder of the line are treated as
+regular text.
 
 ### Lexical Tokens
 
@@ -99,29 +63,154 @@ Token ::
 
 - WhiteSpace
 - LineTerminator
-- Operator
 - Punctuator
+- OperatorName
+- Punctuation
+- Word
 - Name
 - IntValue
 - FloatValue
 - StringValue
-- Word
-- Punctuation
 
 Tokens are later used as terminal symbols in KTex syntactic grammars.
 
-### Ignored Tokens
+### White Space
 
-Ignored ::
+WhiteSpace :: WhiteSpaceChar+
 
-- UnicodeBOM
-- InsignificantWhiteSpace
-- InsignificantLineTerminator
-- Comment
+WhiteSpaceChar ::
 
-UnicodeBOM :: "Byte Order Mark (0xFEFF)"
+- "Horizontal Tab (0x09)"
+- "Space (0x20)"
 
-## Operator
+White space is utilized to separate {Word}s and {Token}s, enhancing the
+readability of the source text. While white space characters generally do not
+contribute to the semantic meaning of a {Document}, they can appear within a
+{String} or {Comment} token, and are significant within "preserving" blocks.
+
+Note: {WhiteSpace} consists of multiple white space characters.
+
+### Line Terminator
+
+LineTerminator ::
+
+- NewLineChar
+- CarriageReturnChar [lookahead != NewLineChar]
+- CarriageReturnChar NewLineChar
+
+NewLineChar :: "New Line (0x0A)"
+
+CarriageReturnChar :: "Carriage Return (0x0D)"
+
+Line terminators divide text into lines. Two or more consecutive line
+terminators act as separators between blocks. A single line terminator is
+insignificant for "_floating_" blocks, but significant for "_line-preserving_"
+and "_preserving_" blocks.
+
+### Punctuator
+
+Punctuator[isOperator] :: one of `=`
+
+Punctuator[!isOperator] :: one of `{` `}` `[` `]`
+
+### Operator Name
+
+OperatorName[!isOperator] :: `\` Name
+
+TODO: do we need last char?
+
+### Punctuation
+
+Punctuation[!isOperator] ::
+
+- PunctuationChar
+- Period
+- Ellipsis
+- Dash
+- EscapedBracket
+
+PunctuationChar :: one of
+
+- `?` `!` `,` `:` `;` `(` `)`
+- `"` `“` `”` `„` `«` `»`
+- `'` `‘` `’` `‚` `‹` `›`
+- `–` `—` `…`
+
+Period :: PeriodChar [lookahead != `..`]
+
+Dash ::
+
+- HyphenChar HyphenChar [lookahead != HyphenChar]
+- HyphenChar HyphenChar HyphenChar
+
+Ellipsis :: PeriodChar PeriodChar PeriodChar
+
+EscapedBracket :: `\` BracketChar
+
+BracketChar :: one of `[` `]` `{` `}`
+
+PeriodChar :: `.`
+
+HyphenChar :: `-`
+
+### Words
+
+Word :: [if not isOperator] WordStart WordBody\*
+
+WordStart :: one of WordCharacter Apostrophe
+
+WordBody :: one of WordCharacter Apostrophe Hyphen
+
+Hyphen :: HyphenChar [lookahead != HyphenChar]
+
+Apostrophe :: `\` `'`
+
+WordCharacter :: "any character from alphabet"
+
+Alphabet configuration is defined by implementation. The default alphabet is the
+set of all Latin letters and Arabic numerals.
+
+Note: {Apostrophe} should be escaped to avoid ambiguity with the single {Quote}.
+
+### Name
+
+Name[!isOperator] :: NameStart NameRest\*
+
+NameStart :: one of NameChar `_`
+
+NameRest :: one of NameStart Digit
+
+NameChar :: one of
+
+- `a` `b` `c` `d` `e` `f` `g` `h` `i` `j` `k` `l` `m`
+- `n` `o` `p` `q` `r` `s` `t` `u` `v` `w` `x` `y` `z`
+- `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M`
+- `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z`
+
+Digit :: one of `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
+
+### Int Value
+
+IntValue[isOperator] :: `-`? IntValueStart IntValueRest\*
+
+IntValueStart :: Digit "except" `0`
+
+IntValueRest :: Digit\*
+
+### Float Value
+
+TODO
+
+### String Value
+
+StringValue[isOperator] :: `"` StringChar\* `"`
+
+StringChar ::
+
+- `\"` "escaped quote"
+- SourceCharacter but not `"` LineTerminator
+
+## Operators
 
 TODO
 
