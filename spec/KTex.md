@@ -9,6 +9,13 @@ process of creating and publishing text across diverse domains and formats.
 
 **Copyright**
 
-Copyright © 2023-present, Dimitri Kurashvili
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">This <a property="dct:title" rel="cc:attributionURL" href="https://ktexml.github.io/ktex-spec/">KTex Specification</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/dimakura">Dimitri Kurashvili</a> is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>
+
+**Attribution**
+
+This specification is heavily influenced by the
+[GraphQL](https://spec.graphql.org/) specifications.
 
 #[Overview](01-Overview.md)
+
+#[Language](02-Language.md)

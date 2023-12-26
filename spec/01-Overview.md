@@ -3,11 +3,12 @@
 KTex is an extensible markup language that simplifies the process of preparing
 texts for publication.
 
-## Problems
+## Design Principles
 
 Before delving into the specifics, let's first explore the primary problems that
-KTex aims to resolve. These problems help illustrate the key features of KTex
-and reflect the fundamental design principles that guide its development.
+KTex aims to resolve. These problems, in turn, help to illustrate the key
+features of KTex and reflect the fundamental design principles that guide its
+development.
 
 ### Single Base
 
@@ -36,5 +37,5 @@ primarily a collection of modules, with only a minimal layer of immutable code.
 KTex simplifies the task of ensuring a consistent writing style across
 publications. For instance, if a publisher requires the use of the Oxford comma
 in all publications, this can be readily enforced by integrating the
-`ktex-chicago-style` module. This module alone offers thousands of checks, all
-of which can be enabled or disabled according to preference.
+`ktex-chicago-style` module. This module alone offers thousands of other checks,
+all of which can be enabled or disabled according to preference.
