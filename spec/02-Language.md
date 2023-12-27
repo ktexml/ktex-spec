@@ -43,12 +43,10 @@ UnicodeBOM :: "Byte Order Mark (0xFEFF)"
 
 ### Comment
 
-Comment :: [if isLineStart] CommentStart CommentCharacter\* [lookahead !=
+Comment :: [if isLineStart] `%` CommentCharacter\* [lookahead !=
 CommentCharacter]
 
 CommentCharacter :: SourceCharacter but not LineTerminator
-
-CommentStart :: `%`
 
 In KTex source documents, a line can be converted into a comment by placing a
 {`%`} marker at the beginning of the line. It's important to note that leading
@@ -76,7 +74,7 @@ Tokens are later used as terminal symbols in KTex syntactic grammars.
 
 ### White Space
 
-WhiteSpace :: WhiteSpaceChar+
+WhiteSpace :: WhiteSpaceChar+ [lookahead != WhiteSpaceChar]
 
 WhiteSpaceChar ::
 
@@ -174,13 +172,20 @@ Note: {Apostrophe} should be escaped to avoid ambiguity with the single {Quote}.
 
 ### Name
 
-Name[!isOperator] :: NameStart NameRest\*
+Name[!isOperator] :: NameStart NameContinue\* [lookahead != NameContinue]
 
-NameStart :: one of NameChar `_`
+NameStart ::
 
-NameRest :: one of NameStart Digit
+- Letter
+- `_`
 
-NameChar :: one of
+NameContinue ::
+
+- Letter
+- Digit
+- `_`
+
+Letter :: one of
 
 - `a` `b` `c` `d` `e` `f` `g` `h` `i` `j` `k` `l` `m`
 - `n` `o` `p` `q` `r` `s` `t` `u` `v` `w` `x` `y` `z`
@@ -191,15 +196,30 @@ Digit :: one of `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
 
 ### Int Value
 
-IntValue[isOperator] :: `-`? IntValueStart IntValueRest\*
+IntValue[isOperator] :: IntegerPart [lookahead != {Digit, `.`, NameStart}]
 
-IntValueStart :: Digit "except" `0`
+IntegerPart ::
 
-IntValueRest :: Digit\*
+- Sign? 0
+- Sign? NonZeroDigit Digit\*
+
+Sign :: one of `-` `+`
+
+NonZeroDigit :: Digit but not `0`
 
 ### Float Value
 
-TODO
+FloatValue[isOperator] ::
+
+- IntegerPart FractionalPart ExponentPart [lookahead != {Digit, `.`, NameStart}]
+- IntegerPart FractionalPart [lookahead != {Digit, `.`, NameStart}]
+- IntegerPart ExponentPart [lookahead != {Digit, `.`, NameStart}]
+
+FractionalPart :: `.` Digit+
+
+ExponentPart :: ExponentIndicator Sign? Digit+
+
+ExponentIndicator :: one of `e` `E`
 
 ### String Value
 
@@ -207,8 +227,10 @@ StringValue[isOperator] :: `"` StringChar\* `"`
 
 StringChar ::
 
-- `\"` "escaped quote"
-- SourceCharacter but not `"` LineTerminator
+- SourceCharacter but not `"` or `\` or LineTerminator
+- `\` EscapedCharacter
+
+EscapedCharacter :: one of `"` `\`
 
 ## Operators
 
