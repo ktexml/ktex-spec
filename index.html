@@ -19,39 +19,39 @@
 </section>
 <section id="sec-Copyright" class="subsec">
 <h6><a href="#sec-Copyright" title="link to this subsection">Copyright</a></h6>
-<p>Copyright 2023-present Dimitri Kurashvili <dimakura@gmail.com></p>
+<p>Copyright 2023-present <a href="mailto:dimakura@gmail.com">Dimitri Kurashvili</a></p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-</section>
-<section id="sec-Attribution" class="subsec">
-<h6><a href="#sec-Attribution" title="link to this subsection">Attribution</a></h6>
-<p>This specification is heavily influenced by the <a href="https://spec.graphql.org/">GraphQL</a> specifications.</p>
 </section>
 </section>
 <nav class="spec-toc">
 <div class="title">Contents</div>
 <ol>
 <li><a href="#sec-Overview"><span class="spec-secid">1</span>Overview</a><ol>
-<li><a href="#sec-Design-Principles"><span class="spec-secid">1.1</span>Design Principles</a><ol>
-<li><a href="#sec-Single-Base"><span class="spec-secid">1.1.1</span>Single Base</a></li>
-<li><a href="#sec-Extensibility"><span class="spec-secid">1.1.2</span>Extensibility</a></li>
-<li><a href="#sec-Modularity"><span class="spec-secid">1.1.3</span>Modularity</a></li>
-<li><a href="#sec-Writing-Style"><span class="spec-secid">1.1.4</span>Writing Style</a></li>
-</ol>
-</li>
+<li><a href="#sec-Design-Principles"><span class="spec-secid">1.1</span>Design Principles</a></li>
+<li><a href="#sec-Use-Cases"><span class="spec-secid">1.2</span>Use Cases</a></li>
+<li><a href="#sec-Problems"><span class="spec-secid">1.3</span>Problems</a></li>
 </ol>
 </li>
 <li><a href="#sec-Language"><span class="spec-secid">2</span>Language</a><ol>
 <li><a href="#sec-Source-Text"><span class="spec-secid">2.1</span>Source Text</a><ol>
-<li><a href="#sec-White-Space"><span class="spec-secid">2.1.1</span>White Space</a></li>
-<li><a href="#sec-Line-Terminator"><span class="spec-secid">2.1.2</span>Line Terminator</a></li>
-<li><a href="#sec-Comment"><span class="spec-secid">2.1.3</span>Comment</a></li>
-<li><a href="#sec-Lexical-Tokens"><span class="spec-secid">2.1.4</span>Lexical Tokens</a></li>
-<li><a href="#sec-Ignored-Tokens"><span class="spec-secid">2.1.5</span>Ignored Tokens</a></li>
+<li><a href="#sec-Ignored-Tokens"><span class="spec-secid">2.1.1</span>Ignored Tokens</a></li>
+<li><a href="#sec-Comment"><span class="spec-secid">2.1.2</span>Comment</a></li>
+<li><a href="#sec-Lexical-Tokens"><span class="spec-secid">2.1.3</span>Lexical Tokens</a></li>
+<li><a href="#sec-White-Space"><span class="spec-secid">2.1.4</span>White Space</a></li>
+<li><a href="#sec-Line-Terminator"><span class="spec-secid">2.1.5</span>Line Terminator</a></li>
+<li><a href="#sec-Punctuator"><span class="spec-secid">2.1.6</span>Punctuator</a></li>
+<li><a href="#sec-Operator-Name"><span class="spec-secid">2.1.7</span>Operator Name</a></li>
+<li><a href="#sec-Punctuation"><span class="spec-secid">2.1.8</span>Punctuation</a></li>
+<li><a href="#sec-Words"><span class="spec-secid">2.1.9</span>Words</a></li>
+<li><a href="#sec-Name"><span class="spec-secid">2.1.10</span>Name</a></li>
+<li><a href="#sec-Int-Value"><span class="spec-secid">2.1.11</span>Int Value</a></li>
+<li><a href="#sec-Float-Value"><span class="spec-secid">2.1.12</span>Float Value</a></li>
+<li><a href="#sec-String-Value"><span class="spec-secid">2.1.13</span>String Value</a></li>
 </ol>
 </li>
-<li><a href="#sec-Operator"><span class="spec-secid">2.2</span>Operator</a></li>
+<li><a href="#sec-Operators"><span class="spec-secid">2.2</span>Operators</a></li>
 <li><a href="#sec-Document"><span class="spec-secid">2.3</span>Document</a></li>
 </ol>
 </li>
@@ -61,40 +61,50 @@
 </header>
 <section id="sec-Overview" secid="1">
 <h1><span class="spec-secid" title="link to this section"><a href="#sec-Overview">1</a></span>Overview</h1>
-<p>KTex is an extensible markup language that simplifies the process of preparing texts for publication.</p>
+<p>KTex is a markup language designed to streamline the preparation of publications. On its own, KTex&rsquo;s functionality is minimal, but its modular design allows for extensive customization and a broad range of capabilities.</p>
 <section id="sec-Design-Principles" secid="1.1">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Design-Principles">1.1</a></span>Design Principles</h2>
-<p>Before delving into the specifics, let&rsquo;s first explore the primary problems that KTex aims to resolve. These problems, in turn, help to illustrate the key features of KTex and reflect the fundamental design principles that guide its development.</p>
-<section id="sec-Single-Base" secid="1.1.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Single-Base">1.1.1</a></span>Single Base</h3>
-<p>The first problem that KTex aims to address is providing publishers with a single, reliable base to manage various publication formats, each with its unique requirements. The benefits of having a unified base for all publications are evident: it eases proofreading, guarantees uniformity across formats, and saves time and resources.</p>
+<ol>
+<li><strong>Tiny Core</strong>. The KTex specification is small. As a markup language, KTex focuses on its core purpose and does not attempt to serve as a general-purpose programming language.</li>
+<li><strong>Extensible</strong> (via modules). The compact core of KTex can be transformed into a powerful tool with the help of modules. These modules, written in a supported programming language, can be distributed and shared just like any other software.</li>
+<li><strong>CI/CD friendly</strong>. KTex is designed for integration into CI/CD pipelines, thereby supporting a broad spectrum of use cases, from straightforward blog posts to intricate publication processes.</li>
+</ol>
 </section>
-<section id="sec-Extensibility" secid="1.1.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Extensibility">1.1.2</a></span>Extensibility</h3>
-<p>Publishers frequently have specific requirements, including unique fonts, text styling, and layouts. KTex is not a fixed markup language; rather, it functions as a flexible framework that can be expanded to accommodate a wide range of needs.</p>
+<section id="sec-Use-Cases" secid="1.2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Use-Cases">1.2</a></span>Use Cases</h2>
+<div class="spec-todo">
+extend this section</div>
+<ol>
+<li><strong>Libraries</strong></li>
+<li><strong>Blogs</strong></li>
+<li><strong>Academic Publications</strong></li>
+<li><strong>Technical Documentation</strong></li>
+<li><strong>News</strong></li>
+</ol>
 </section>
-<section id="sec-Modularity" secid="1.1.3">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Modularity">1.1.3</a></span>Modularity</h3>
-<p>KTex is modular by design. Publishers can use external modules to further enhance KTex, or develop their own modules for use across different KTex projects or for sharing with other publishers. In fact, the core of KTex is primarily a collection of modules, with only a minimal layer of immutable code.</p>
-</section>
-<section id="sec-Writing-Style" secid="1.1.4">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Writing-Style">1.1.4</a></span>Writing Style</h3>
-<p>KTex simplifies the task of ensuring a consistent writing style across publications. For instance, if a publisher requires the use of the Oxford comma in all publications, this can be readily enforced by integrating the <code>ktex-chicago-style</code> module. This module alone offers thousands of other checks, all of which can be enabled or disabled according to preference. </p>
-</section>
+<section id="sec-Problems" secid="1.3">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Problems">1.3</a></span>Problems</h2>
+<div class="spec-todo">
+move this up and describe the problems that KTex solves compared to other software</div>
+<ol>
+<li>Multiple formats</li>
+<li>Spell checking</li>
+<li>Writing style</li>
+<li>Math typesetting </li>
+</ol>
 </section>
 </section>
 <section id="sec-Language" secid="2">
 <h1><span class="spec-secid" title="link to this section"><a href="#sec-Language">2</a></span>Language</h1>
-<p>Clients use the KTex markup language to prepare texts for publication. We refer to such texts as source documents. A document is built from a sequence of blocks, which optionally use operators to modify their content.</p>
+<p>The KTex markup language is used to prepare document. A document is built from a sequence of blocks, which are built using operators.</p>
 <p>The source text of a KTex document must be a sequence of <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span>s. These characters must be described by a sequence of <span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span> lexical grammars. The lexical token sequence, omitting <span class="spec-nt"><a href="#Ignored" data-name="Ignored">Ignored</a></span>, must be described by a single <span class="spec-nt"><a href="#Document" data-name="Document">Document</a></span> syntactic grammar.</p>
 <section id="sec-Language.Lexical-Analysis-and-Syntax-Parse" class="subsec">
 <h6><a href="#sec-Language.Lexical-Analysis-and-Syntax-Parse" title="link to this subsection">Lexical Analysis and Syntax Parse</a></h6>
-<p>The source text of a KTex document is first converted into a sequence of lexical tokens, <span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span>, and ignored tokens, <span class="spec-nt"><a href="#Ignored" data-name="Ignored">Ignored</a></span>. The source text is scanned from left to right, repeatedly taking the next possible sequence of code-points allowed by the lexical grammar productions as the next token. This sequence of lexical tokens are then scanned from left to right to produce an abstract syntax tree (AST) according to the <span class="spec-nt"><a href="#Document" data-name="Document">Document</a></span> syntactical grammar.</p>
-<p>Lexical grammar productions in this document use lookahead restrictions to remove ambiguity and ensure a single valid lexical analysis. A lexical token is only valid if not followed by a character in its lookahead restriction.</p>
-<p>In addition, lexical grammar production is sensitive to the <em>context</em>, or current state, of the lexer. Lexer context has the following properties:</p>
+<p>The source text of a KTex document is first converted into a sequence of lexical tokens, <span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span>, and ignored tokens, <span class="spec-nt"><a href="#Ignored" data-name="Ignored">Ignored</a></span>. This sequence of lexical tokens are then scanned from left to right to produce an abstract syntax tree (AST) according to the <span class="spec-nt"><a href="#Document" data-name="Document">Document</a></span> syntactical grammar.</p>
+<p>In this document, lexical grammar productions employ lookahead restrictions to eliminate ambiguity and guarantee a singular, valid lexical analysis. Moreover, the production of lexical grammar is influenced by the value of these two flags:</p>
 <ul>
-<li><code>isLineStart</code>, a <code>Boolean</code> flag, which is set to <code>true</code> at the start of a new line. This property is not turned off until an encounter with a non-whitespace character.</li>
-<li><code>isOperator</code>, a <code>Boolean</code> flag, which is set to <code>true</code> only within &ldquo;operator context&rdquo; (explained later).</li>
+<li><code>isLineStart</code>: a <code>Boolean</code> flag set to <code>true</code> at the beginning of a new line. This property remains active until a non-whitespace character is encountered.</li>
+<li><code>isOperator</code>: a <code>Boolean</code> flag set to <code>true</code> only within an &ldquo;operator context&rdquo; (explained later).</li>
 </ul>
 </section>
 <section id="sec-Source-Text" secid="2.1">
@@ -102,79 +112,242 @@
 <div class="spec-production d2" id="SourceCharacter">
 <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-prose">Any UTF-8 character</span></div>
 </div>
-<p>KTex documents are interpreted from a source text, which is a sequence of <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span>, each <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span> being a UTF-8 character, informally referred to as a <em>&ldquo;character&rdquo;</em> through most of this specification.</p>
-<section id="sec-White-Space" secid="2.1.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-White-Space">2.1.1</a></span>White Space</h3>
-<div class="spec-production d2" id="WhiteSpace">
-<span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span><div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-prose">Horizontal Tab (0x09)</span></div>
-<div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-prose">Space (0x20)</span></div>
-</div>
-<div class="spec-production d2" id="InsignificantWhiteSpace">
-<span class="spec-nt"><a href="#InsignificantWhiteSpace" data-name="InsignificantWhiteSpace">InsignificantWhiteSpace</a></span><div class="spec-rhs"><span class="spec-condition">isOperator</span><span class="spec-prose">Horizontal Tab (0x09)</span></div>
-<div class="spec-rhs"><span class="spec-condition">isOperator</span><span class="spec-prose">Space (0x20)</span></div>
-</div>
-<div class="spec-todo">
-review this definition</div>
-<p>White space is used to separate <span class="spec-nt"><span data-name="Word">Word</span></span>s and improve legibility of source text and act as separator between tokens, and any amount of white space may appear before or after any token. White space tokens usually are not significant to the semantic meaning of a KTex <span class="spec-nt"><a href="#Document" data-name="Document">Document</a></span>, however white space characters may appear within a <span class="spec-nt"><span data-name="String">String</span></span> or <span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span> token, and are significant within <em>&ldquo;preserving&rdquo;</em> blocks.</p>
-</section>
-<section id="sec-Line-Terminator" secid="2.1.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminator">2.1.2</a></span>Line Terminator</h3>
-<div class="spec-production d2" id="LineTerminator">
-<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-prose">New Line (0x0A)</span></div>
-<div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-prose">Carriage Return (0x0D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (0x0A)</span></span></div>
-<div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-prose">Carriage Return (0x0D)</span><span class="spec-prose">New Line (0x0A)</span></div>
-</div>
-<div class="spec-production d2" id="InsignificantLineTerminator">
-<span class="spec-nt"><a href="#InsignificantLineTerminator" data-name="InsignificantLineTerminator">InsignificantLineTerminator</a></span><div class="spec-rhs"><span class="spec-condition">isOperator</span><span class="spec-prose">New Line (0x0A)</span></div>
-<div class="spec-rhs"><span class="spec-condition">isOperator</span><span class="spec-prose">Carriage Return (0x0D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (0x0A)</span></span></div>
-<div class="spec-rhs"><span class="spec-condition">isOperator</span><span class="spec-prose">Carriage Return (0x0D)</span><span class="spec-prose">New Line (0x0A)</span></div>
-</div>
-<p>Line terminators are used to split text into lines and two, or more, consecutive line terminators are treated as separators between blocks. Single line terminator is insignificant for <em>&ldquo;floating&rdquo;</em> blocks, but significant for <em>&ldquo;line-preserving&rdquo;</em> and <em>&ldquo;preserving&rdquo;</em> blocks.</p>
-</section>
-<section id="sec-Comment" secid="2.1.3">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Comment">2.1.3</a></span>Comment</h3>
-<div class="spec-production d2" id="Comment">
-<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span></span></div>
-</div>
-<div class="spec-production d2" id="CommentCharacter">
-<span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
-</div>
-<div class="spec-production d2" id="CommentStart">
-<span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><div class="spec-rhs"><span class="spec-t">%</span><span class="spec-prose">when</span><span class="spec-t">context.isLineStart</span><span class="spec-prose">is</span><span class="spec-t">true</span></div>
-</div>
-<p>A line in KTex source documents may be transformed into a comment, by putting <span class="spec-t">%</span> marker at the start of the line. Note, that leading white space characters before the <span class="spec-t">%</span> marker does not affect the comment. But if the <span class="spec-t">%</span> marker is preceded by any number non-whitespace characters, then the <span class="spec-t">%</span> marker and the rest of the line is treated as a normal text.</p>
-</section>
-<section id="sec-Lexical-Tokens" secid="2.1.4">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Lexical-Tokens">2.1.4</a></span>Lexical Tokens</h3>
-<div class="spec-production d2" id="Token">
-<span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="Operator">Operator</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="Punctuator">Punctuator</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="IntValue">IntValue</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="FloatValue">FloatValue</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="StringValue">StringValue</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="Word">Word</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="Punctuation">Punctuation</span></span></div>
-</div>
-<p>Tokens are later used as terminal symbols in KTex syntactic grammars.</p>
-</section>
-<section id="sec-Ignored-Tokens" secid="2.1.5">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Ignored-Tokens">2.1.5</a></span>Ignored Tokens</h3>
+<p>KTex documents are derived from a source text, composed of a sequence of <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span>s. Each <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span> represents a UTF-8 character, which is informally referred to as a &ldquo;<em>character</em>&rdquo; throughout this specification.</p>
+<section id="sec-Ignored-Tokens" secid="2.1.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Ignored-Tokens">2.1.1</a></span>Ignored Tokens</h3>
 <div class="spec-production d2" id="Ignored">
 <span class="spec-nt"><a href="#Ignored" data-name="Ignored">Ignored</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#UnicodeBOM" data-name="UnicodeBOM">UnicodeBOM</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#InsignificantWhiteSpace" data-name="InsignificantWhiteSpace">InsignificantWhiteSpace</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#InsignificantLineTerminator" data-name="InsignificantLineTerminator">InsignificantLineTerminator</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span></div>
 </div>
 <div class="spec-production d2" id="UnicodeBOM">
 <span class="spec-nt"><a href="#UnicodeBOM" data-name="UnicodeBOM">UnicodeBOM</a></span><div class="spec-rhs"><span class="spec-prose">Byte Order Mark (0xFEFF)</span></div>
 </div>
 </section>
+<section id="sec-Comment" secid="2.1.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Comment">2.1.2</a></span>Comment</h3>
+<div class="spec-production d2" id="Comment">
+<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-condition">isLineStart</span><span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span></span></div>
+</div>
+<div class="spec-production d2" id="CommentCharacter">
+<span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
+</div>
+<div class="spec-production d2" id="CommentStart">
+<span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><div class="spec-rhs"><span class="spec-t">%</span></div>
+</div>
+<p>In KTex source documents, a line can be converted into a comment by placing a <span class="spec-t">%</span> marker at the beginning of the line. It&rsquo;s important to note that leading whitespace characters before the <span class="spec-t">%</span> marker do not influence the comment. However, if the <span class="spec-t">%</span> marker is preceded by any number of non-whitespace characters, then the <span class="spec-t">%</span> marker and the remainder of the line are treated as regular text.</p>
 </section>
-<section id="sec-Operator" secid="2.2">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Operator">2.2</a></span>Operator</h2>
+<section id="sec-Lexical-Tokens" secid="2.1.3">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Lexical-Tokens">2.1.3</a></span>Lexical Tokens</h3>
+<div class="spec-production d2" id="Token">
+<span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperatorName" data-name="OperatorName">OperatorName</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Punctuation" data-name="Punctuation">Punctuation</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><span data-name="FloatValue">FloatValue</span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
+</div>
+<p>Tokens are later used as terminal symbols in KTex syntactic grammars.</p>
+</section>
+<section id="sec-White-Space" secid="2.1.4">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-White-Space">2.1.4</a></span>White Space</h3>
+<div class="spec-production d2" id="WhiteSpace">
+<span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+</div>
+<div class="spec-production d2" id="WhiteSpaceChar">
+<span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span><div class="spec-rhs"><span class="spec-prose">Horizontal Tab (0x09)</span></div>
+<div class="spec-rhs"><span class="spec-prose">Space (0x20)</span></div>
+</div>
+<p>White space is utilized to separate <span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span>s and <span class="spec-nt"><a href="#Token" data-name="Token">Token</a></span>s, enhancing the readability of the source text. While white space characters generally do not contribute to the semantic meaning of a <span class="spec-nt"><a href="#Document" data-name="Document">Document</a></span>, they can appear within a <span class="spec-nt"><span data-name="String">String</span></span> or <span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span> token, and are significant within &ldquo;preserving&rdquo; blocks.</p>
+<div id="note-c4b77" class="spec-note">
+<a href="#note-c4b77">Note</a>
+<span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span> consists of multiple white space characters.</div>
+</section>
+<section id="sec-Line-Terminator" secid="2.1.5">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminator">2.1.5</a></span>Line Terminator</h3>
+<div class="spec-production d2" id="LineTerminator">
+<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#NewLineChar" data-name="NewLineChar">NewLineChar</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#CarriageReturnChar" data-name="CarriageReturnChar">CarriageReturnChar</a></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#NewLineChar" data-name="NewLineChar">NewLineChar</a></span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#CarriageReturnChar" data-name="CarriageReturnChar">CarriageReturnChar</a></span><span class="spec-nt"><a href="#NewLineChar" data-name="NewLineChar">NewLineChar</a></span></div>
+</div>
+<div class="spec-production d2" id="NewLineChar">
+<span class="spec-nt"><a href="#NewLineChar" data-name="NewLineChar">NewLineChar</a></span><div class="spec-rhs"><span class="spec-prose">New Line (0x0A)</span></div>
+</div>
+<div class="spec-production d2" id="CarriageReturnChar">
+<span class="spec-nt"><a href="#CarriageReturnChar" data-name="CarriageReturnChar">CarriageReturnChar</a></span><div class="spec-rhs"><span class="spec-prose">Carriage Return (0x0D)</span></div>
+</div>
+<p>Line terminators divide text into lines. Two or more consecutive line terminators act as separators between blocks. A single line terminator is insignificant for &ldquo;<em>floating</em>&rdquo; blocks, but significant for &ldquo;<em>line-preserving</em>&rdquo; and &ldquo;<em>preserving</em>&rdquo; blocks.</p>
+</section>
+<section id="sec-Punctuator" secid="2.1.6">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Punctuator">2.1.6</a></span>Punctuator</h3>
+<div class="spec-production d2" id="Punctuator">
+<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">=</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="Punctuator">
+<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">{</span></td><td class="spec-rhs"><span class="spec-t">}</span></td><td class="spec-rhs"><span class="spec-t">[</span></td><td class="spec-rhs"><span class="spec-t">]</span></td></tr>
+</table></div></div>
+</div>
+</section>
+<section id="sec-Operator-Name" secid="2.1.7">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operator-Name">2.1.7</a></span>Operator Name</h3>
+<div class="spec-production d2" id="OperatorName">
+<span class="spec-nt"><a href="#OperatorName" data-name="OperatorName">OperatorName</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+</div>
+<div class="spec-todo">
+do we need last char?</div>
+</section>
+<section id="sec-Punctuation" secid="2.1.8">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Punctuation">2.1.8</a></span>Punctuation</h3>
+<div class="spec-production d2" id="Punctuation">
+<span class="spec-nt"><a href="#Punctuation" data-name="Punctuation">Punctuation</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#PunctuationChar" data-name="PunctuationChar">PunctuationChar</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Period" data-name="Period">Period</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Ellipsis" data-name="Ellipsis">Ellipsis</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Dash" data-name="Dash">Dash</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#EscapedBracket" data-name="EscapedBracket">EscapedBracket</a></span></div>
+</div>
+<div class="spec-production d2" id="PunctuationChar">
+<span class="spec-nt"><a href="#PunctuationChar" data-name="PunctuationChar">PunctuationChar</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">?</span></td><td class="spec-rhs"><span class="spec-t">!</span></td><td class="spec-rhs"><span class="spec-t">,</span></td><td class="spec-rhs"><span class="spec-t">:</span></td><td class="spec-rhs"><span class="spec-t">;</span></td><td class="spec-rhs"><span class="spec-t">(</span></td><td class="spec-rhs"><span class="spec-t">)</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">"</span></td><td class="spec-rhs"><span class="spec-t">&ldquo;</span></td><td class="spec-rhs"><span class="spec-t">&rdquo;</span></td><td class="spec-rhs"><span class="spec-t">„</span></td><td class="spec-rhs"><span class="spec-t">«</span></td><td class="spec-rhs"><span class="spec-t">»</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">'</span></td><td class="spec-rhs"><span class="spec-t">&lsquo;</span></td><td class="spec-rhs"><span class="spec-t">&rsquo;</span></td><td class="spec-rhs"><span class="spec-t">‚</span></td><td class="spec-rhs"><span class="spec-t">‹</span></td><td class="spec-rhs"><span class="spec-t">›</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">&ndash;</span></td><td class="spec-rhs"><span class="spec-t">&mdash;</span></td><td class="spec-rhs"><span class="spec-t">…</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="Period">
+<span class="spec-nt"><a href="#Period" data-name="Period">Period</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#PeriodChar" data-name="PeriodChar">PeriodChar</a></span><span class="spec-lookahead not"><span class="spec-t">..</span></span></div>
+</div>
+<div class="spec-production d2" id="Dash">
+<span class="spec-nt"><a href="#Dash" data-name="Dash">Dash</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span></div>
+</div>
+<div class="spec-production d2" id="Ellipsis">
+<span class="spec-nt"><a href="#Ellipsis" data-name="Ellipsis">Ellipsis</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#PeriodChar" data-name="PeriodChar">PeriodChar</a></span><span class="spec-nt"><a href="#PeriodChar" data-name="PeriodChar">PeriodChar</a></span><span class="spec-nt"><a href="#PeriodChar" data-name="PeriodChar">PeriodChar</a></span></div>
+</div>
+<div class="spec-production d2" id="EscapedBracket">
+<span class="spec-nt"><a href="#EscapedBracket" data-name="EscapedBracket">EscapedBracket</a></span><div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#BracketChar" data-name="BracketChar">BracketChar</a></span></div>
+</div>
+<div class="spec-production d2" id="BracketChar">
+<span class="spec-nt"><a href="#BracketChar" data-name="BracketChar">BracketChar</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">[</span></td><td class="spec-rhs"><span class="spec-t">]</span></td><td class="spec-rhs"><span class="spec-t">{</span></td><td class="spec-rhs"><span class="spec-t">}</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="PeriodChar">
+<span class="spec-nt"><a href="#PeriodChar" data-name="PeriodChar">PeriodChar</a></span><div class="spec-rhs"><span class="spec-t">.</span></div>
+</div>
+<div class="spec-production d2" id="HyphenChar">
+<span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><div class="spec-rhs"><span class="spec-t">-</span></div>
+</div>
+</section>
+<section id="sec-Words" secid="2.1.9">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Words">2.1.9</a></span>Words</h3>
+<div class="spec-production d2" id="Word">
+<span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span><div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-nt"><a href="#WordStart" data-name="WordStart">WordStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#WordBody" data-name="WordBody">WordBody</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="WordStart">
+<span class="spec-nt"><a href="#WordStart" data-name="WordStart">WordStart</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><a href="#WordCharacter" data-name="WordCharacter">WordCharacter</a></span></td><td class="spec-rhs"><span class="spec-nt"><a href="#Apostrophe" data-name="Apostrophe">Apostrophe</a></span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="WordBody">
+<span class="spec-nt"><a href="#WordBody" data-name="WordBody">WordBody</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><a href="#WordCharacter" data-name="WordCharacter">WordCharacter</a></span></td><td class="spec-rhs"><span class="spec-nt"><a href="#Apostrophe" data-name="Apostrophe">Apostrophe</a></span></td><td class="spec-rhs"><span class="spec-nt"><a href="#Hyphen" data-name="Hyphen">Hyphen</a></span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="Hyphen">
+<span class="spec-nt"><a href="#Hyphen" data-name="Hyphen">Hyphen</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#HyphenChar" data-name="HyphenChar">HyphenChar</a></span></span></div>
+</div>
+<div class="spec-production d2" id="Apostrophe">
+<span class="spec-nt"><a href="#Apostrophe" data-name="Apostrophe">Apostrophe</a></span><div class="spec-rhs"><span class="spec-t">\</span><span class="spec-t">'</span></div>
+</div>
+<div class="spec-production d2" id="WordCharacter">
+<span class="spec-nt"><a href="#WordCharacter" data-name="WordCharacter">WordCharacter</a></span><div class="spec-rhs"><span class="spec-prose">any character from alphabet</span></div>
+</div>
+<p>Alphabet configuration is defined by implementation. The default alphabet is the set of all Latin letters and Arabic numerals.</p>
+<div id="note-e834a" class="spec-note">
+<a href="#note-e834a">Note</a>
+<span class="spec-nt"><a href="#Apostrophe" data-name="Apostrophe">Apostrophe</a></span> should be escaped to avoid ambiguity with the single <span class="spec-nt"><span data-name="Quote">Quote</span></span>.</div>
+</section>
+<section id="sec-Name" secid="2.1.10">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Name">2.1.10</a></span>Name</h3>
+<div class="spec-production d2" id="Name">
+<span class="spec-nt"><a href="#Name" data-name="Name">Name</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NameRest" data-name="NameRest">NameRest</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="NameStart">
+<span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><a href="#NameChar" data-name="NameChar">NameChar</a></span></td><td class="spec-rhs"><span class="spec-t">_</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="NameRest">
+<span class="spec-nt"><a href="#NameRest" data-name="NameRest">NameRest</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></td><td class="spec-rhs"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="NameChar">
+<span class="spec-nt"><a href="#NameChar" data-name="NameChar">NameChar</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">a</span></td><td class="spec-rhs"><span class="spec-t">b</span></td><td class="spec-rhs"><span class="spec-t">c</span></td><td class="spec-rhs"><span class="spec-t">d</span></td><td class="spec-rhs"><span class="spec-t">e</span></td><td class="spec-rhs"><span class="spec-t">f</span></td><td class="spec-rhs"><span class="spec-t">g</span></td><td class="spec-rhs"><span class="spec-t">h</span></td><td class="spec-rhs"><span class="spec-t">i</span></td><td class="spec-rhs"><span class="spec-t">j</span></td><td class="spec-rhs"><span class="spec-t">k</span></td><td class="spec-rhs"><span class="spec-t">l</span></td><td class="spec-rhs"><span class="spec-t">m</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">n</span></td><td class="spec-rhs"><span class="spec-t">o</span></td><td class="spec-rhs"><span class="spec-t">p</span></td><td class="spec-rhs"><span class="spec-t">q</span></td><td class="spec-rhs"><span class="spec-t">r</span></td><td class="spec-rhs"><span class="spec-t">s</span></td><td class="spec-rhs"><span class="spec-t">t</span></td><td class="spec-rhs"><span class="spec-t">u</span></td><td class="spec-rhs"><span class="spec-t">v</span></td><td class="spec-rhs"><span class="spec-t">w</span></td><td class="spec-rhs"><span class="spec-t">x</span></td><td class="spec-rhs"><span class="spec-t">y</span></td><td class="spec-rhs"><span class="spec-t">z</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">A</span></td><td class="spec-rhs"><span class="spec-t">B</span></td><td class="spec-rhs"><span class="spec-t">C</span></td><td class="spec-rhs"><span class="spec-t">D</span></td><td class="spec-rhs"><span class="spec-t">E</span></td><td class="spec-rhs"><span class="spec-t">F</span></td><td class="spec-rhs"><span class="spec-t">G</span></td><td class="spec-rhs"><span class="spec-t">H</span></td><td class="spec-rhs"><span class="spec-t">I</span></td><td class="spec-rhs"><span class="spec-t">J</span></td><td class="spec-rhs"><span class="spec-t">K</span></td><td class="spec-rhs"><span class="spec-t">L</span></td><td class="spec-rhs"><span class="spec-t">M</span></td></tr>
+<tr>
+<td class="spec-rhs"><span class="spec-t">N</span></td><td class="spec-rhs"><span class="spec-t">O</span></td><td class="spec-rhs"><span class="spec-t">P</span></td><td class="spec-rhs"><span class="spec-t">Q</span></td><td class="spec-rhs"><span class="spec-t">R</span></td><td class="spec-rhs"><span class="spec-t">S</span></td><td class="spec-rhs"><span class="spec-t">T</span></td><td class="spec-rhs"><span class="spec-t">U</span></td><td class="spec-rhs"><span class="spec-t">V</span></td><td class="spec-rhs"><span class="spec-t">W</span></td><td class="spec-rhs"><span class="spec-t">X</span></td><td class="spec-rhs"><span class="spec-t">Y</span></td><td class="spec-rhs"><span class="spec-t">Z</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="Digit">
+<span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">0</span></td><td class="spec-rhs"><span class="spec-t">1</span></td><td class="spec-rhs"><span class="spec-t">2</span></td><td class="spec-rhs"><span class="spec-t">3</span></td><td class="spec-rhs"><span class="spec-t">4</span></td><td class="spec-rhs"><span class="spec-t">5</span></td><td class="spec-rhs"><span class="spec-t">6</span></td><td class="spec-rhs"><span class="spec-t">7</span></td><td class="spec-rhs"><span class="spec-t">8</span></td><td class="spec-rhs"><span class="spec-t">9</span></td></tr>
+</table></div></div>
+</div>
+</section>
+<section id="sec-Int-Value" secid="2.1.11">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Int-Value">2.1.11</a></span>Int Value</h3>
+<div class="spec-production d2" id="IntValue">
+<span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-t">-</span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#IntValueStart" data-name="IntValueStart">IntValueStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#IntValueRest" data-name="IntValueRest">IntValueRest</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="IntValueStart">
+<span class="spec-nt"><a href="#IntValueStart" data-name="IntValueStart">IntValueStart</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-prose">except</span><span class="spec-t">0</span></div>
+</div>
+<div class="spec-production d2" id="IntValueRest">
+<span class="spec-nt"><a href="#IntValueRest" data-name="IntValueRest">IntValueRest</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+</section>
+<section id="sec-Float-Value" secid="2.1.12">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Float-Value">2.1.12</a></span>Float Value</h3>
+<div class="spec-todo">
+</div>
+</section>
+<section id="sec-String-Value" secid="2.1.13">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">2.1.13</a></span>String Value</h3>
+<div class="spec-production d2" id="StringValue">
+<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-t">"</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">"</span></div>
+</div>
+<div class="spec-production d2" id="StringChar">
+<span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><div class="spec-rhs"><span class="spec-t">\"</span><span class="spec-prose">escaped quote</span></div>
+<div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">"</span></span></span><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></div>
+</div>
+</section>
+</section>
+<section id="sec-Operators" secid="2.2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Operators">2.2</a></span>Operators</h2>
 <div class="spec-todo">
 </div>
 </section>
@@ -189,18 +362,46 @@ review this definition</div>
 <h1>
 <span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1>
 <ol>
+<li><a href="#Apostrophe">Apostrophe</a></li>
+<li><a href="#BracketChar">BracketChar</a></li>
+<li><a href="#CarriageReturnChar">CarriageReturnChar</a></li>
 <li><a href="#Comment">Comment</a></li>
 <li><a href="#CommentCharacter">CommentCharacter</a></li>
 <li><a href="#CommentStart">CommentStart</a></li>
+<li><a href="#Dash">Dash</a></li>
+<li><a href="#Digit">Digit</a></li>
 <li><a href="#Document">Document</a></li>
+<li><a href="#Ellipsis">Ellipsis</a></li>
+<li><a href="#EscapedBracket">EscapedBracket</a></li>
+<li><a href="#Hyphen">Hyphen</a></li>
+<li><a href="#HyphenChar">HyphenChar</a></li>
 <li><a href="#Ignored">Ignored</a></li>
-<li><a href="#InsignificantLineTerminator">InsignificantLineTerminator</a></li>
-<li><a href="#InsignificantWhiteSpace">InsignificantWhiteSpace</a></li>
+<li><a href="#IntValue">IntValue</a></li>
+<li><a href="#IntValueRest">IntValueRest</a></li>
+<li><a href="#IntValueStart">IntValueStart</a></li>
 <li><a href="#LineTerminator">LineTerminator</a></li>
+<li><a href="#Name">Name</a></li>
+<li><a href="#NameChar">NameChar</a></li>
+<li><a href="#NameRest">NameRest</a></li>
+<li><a href="#NameStart">NameStart</a></li>
+<li><a href="#NewLineChar">NewLineChar</a></li>
+<li><a href="#OperatorName">OperatorName</a></li>
+<li><a href="#Period">Period</a></li>
+<li><a href="#PeriodChar">PeriodChar</a></li>
+<li><a href="#Punctuation">Punctuation</a></li>
+<li><a href="#PunctuationChar">PunctuationChar</a></li>
+<li><a href="#Punctuator">Punctuator</a></li>
 <li><a href="#SourceCharacter">SourceCharacter</a></li>
+<li><a href="#StringChar">StringChar</a></li>
+<li><a href="#StringValue">StringValue</a></li>
 <li><a href="#Token">Token</a></li>
 <li><a href="#UnicodeBOM">UnicodeBOM</a></li>
 <li><a href="#WhiteSpace">WhiteSpace</a></li>
+<li><a href="#WhiteSpaceChar">WhiteSpaceChar</a></li>
+<li><a href="#Word">Word</a></li>
+<li><a href="#WordBody">WordBody</a></li>
+<li><a href="#WordCharacter">WordCharacter</a></li>
+<li><a href="#WordStart">WordStart</a></li>
 </ol>
 </section>
 </article>
@@ -213,15 +414,9 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <ol><li id="_sidebar_1"><a href="#sec-Overview"><span class="spec-secid">1</span>Overview</a>
 <input hidden class="toggle" type="checkbox" id="_toggle_1" /><label for="_toggle_1"></label>
 <ol>
-<li id="_sidebar_1.1"><a href="#sec-Design-Principles"><span class="spec-secid">1.1</span>Design Principles</a>
-<input hidden class="toggle" type="checkbox" id="_toggle_1.1" /><label for="_toggle_1.1"></label>
-<ol>
-<li id="_sidebar_1.1.1"><a href="#sec-Single-Base"><span class="spec-secid">1.1.1</span>Single Base</a></li>
-<li id="_sidebar_1.1.2"><a href="#sec-Extensibility"><span class="spec-secid">1.1.2</span>Extensibility</a></li>
-<li id="_sidebar_1.1.3"><a href="#sec-Modularity"><span class="spec-secid">1.1.3</span>Modularity</a></li>
-<li id="_sidebar_1.1.4"><a href="#sec-Writing-Style"><span class="spec-secid">1.1.4</span>Writing Style</a></li>
-</ol>
-</li>
+<li id="_sidebar_1.1"><a href="#sec-Design-Principles"><span class="spec-secid">1.1</span>Design Principles</a></li>
+<li id="_sidebar_1.2"><a href="#sec-Use-Cases"><span class="spec-secid">1.2</span>Use Cases</a></li>
+<li id="_sidebar_1.3"><a href="#sec-Problems"><span class="spec-secid">1.3</span>Problems</a></li>
 </ol>
 </li>
 <li id="_sidebar_2"><a href="#sec-Language"><span class="spec-secid">2</span>Language</a>
@@ -230,14 +425,22 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_2.1"><a href="#sec-Source-Text"><span class="spec-secid">2.1</span>Source Text</a>
 <input hidden class="toggle" type="checkbox" id="_toggle_2.1" /><label for="_toggle_2.1"></label>
 <ol>
-<li id="_sidebar_2.1.1"><a href="#sec-White-Space"><span class="spec-secid">2.1.1</span>White Space</a></li>
-<li id="_sidebar_2.1.2"><a href="#sec-Line-Terminator"><span class="spec-secid">2.1.2</span>Line Terminator</a></li>
-<li id="_sidebar_2.1.3"><a href="#sec-Comment"><span class="spec-secid">2.1.3</span>Comment</a></li>
-<li id="_sidebar_2.1.4"><a href="#sec-Lexical-Tokens"><span class="spec-secid">2.1.4</span>Lexical Tokens</a></li>
-<li id="_sidebar_2.1.5"><a href="#sec-Ignored-Tokens"><span class="spec-secid">2.1.5</span>Ignored Tokens</a></li>
+<li id="_sidebar_2.1.1"><a href="#sec-Ignored-Tokens"><span class="spec-secid">2.1.1</span>Ignored Tokens</a></li>
+<li id="_sidebar_2.1.2"><a href="#sec-Comment"><span class="spec-secid">2.1.2</span>Comment</a></li>
+<li id="_sidebar_2.1.3"><a href="#sec-Lexical-Tokens"><span class="spec-secid">2.1.3</span>Lexical Tokens</a></li>
+<li id="_sidebar_2.1.4"><a href="#sec-White-Space"><span class="spec-secid">2.1.4</span>White Space</a></li>
+<li id="_sidebar_2.1.5"><a href="#sec-Line-Terminator"><span class="spec-secid">2.1.5</span>Line Terminator</a></li>
+<li id="_sidebar_2.1.6"><a href="#sec-Punctuator"><span class="spec-secid">2.1.6</span>Punctuator</a></li>
+<li id="_sidebar_2.1.7"><a href="#sec-Operator-Name"><span class="spec-secid">2.1.7</span>Operator Name</a></li>
+<li id="_sidebar_2.1.8"><a href="#sec-Punctuation"><span class="spec-secid">2.1.8</span>Punctuation</a></li>
+<li id="_sidebar_2.1.9"><a href="#sec-Words"><span class="spec-secid">2.1.9</span>Words</a></li>
+<li id="_sidebar_2.1.10"><a href="#sec-Name"><span class="spec-secid">2.1.10</span>Name</a></li>
+<li id="_sidebar_2.1.11"><a href="#sec-Int-Value"><span class="spec-secid">2.1.11</span>Int Value</a></li>
+<li id="_sidebar_2.1.12"><a href="#sec-Float-Value"><span class="spec-secid">2.1.12</span>Float Value</a></li>
+<li id="_sidebar_2.1.13"><a href="#sec-String-Value"><span class="spec-secid">2.1.13</span>String Value</a></li>
 </ol>
 </li>
-<li id="_sidebar_2.2"><a href="#sec-Operator"><span class="spec-secid">2.2</span>Operator</a></li>
+<li id="_sidebar_2.2"><a href="#sec-Operators"><span class="spec-secid">2.2</span>Operators</a></li>
 <li id="_sidebar_2.3"><a href="#sec-Document"><span class="spec-secid">2.3</span>Document</a></li>
 </ol>
 </li>
