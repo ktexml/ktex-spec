@@ -9,7 +9,7 @@ of creating and publishing text across diverse domains and formats.
 
 **Copyright**
 
-Copyright 2023-present Dimitri Kurashvili <dimakura@gmail.com>
+Copyright 2023-present [Dimitri Kurashvili](mailto:dimakura@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the “Software”), to deal in
@@ -27,11 +27,6 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**Attribution**
-
-This specification is heavily influenced by the
-[GraphQL](https://spec.graphql.org/) specifications.
 
 #[Overview](01-Overview.md)
 
