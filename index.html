@@ -126,13 +126,10 @@ move this up and describe the problems that KTex solves compared to other softwa
 <section id="sec-Comment" secid="2.1.2">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Comment">2.1.2</a></span>Comment</h3>
 <div class="spec-production d2" id="Comment">
-<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-condition">isLineStart</span><span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span></span></div>
+<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-condition">isLineStart</span><span class="spec-t">%</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span></span></div>
 </div>
 <div class="spec-production d2" id="CommentCharacter">
 <span class="spec-nt"><a href="#CommentCharacter" data-name="CommentCharacter">CommentCharacter</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
-</div>
-<div class="spec-production d2" id="CommentStart">
-<span class="spec-nt"><a href="#CommentStart" data-name="CommentStart">CommentStart</a></span><div class="spec-rhs"><span class="spec-t">%</span></div>
 </div>
 <p>In KTex source documents, a line can be converted into a comment by placing a <span class="spec-t">%</span> marker at the beginning of the line. It&rsquo;s important to note that leading whitespace characters before the <span class="spec-t">%</span> marker do not influence the comment. However, if the <span class="spec-t">%</span> marker is preceded by any number of non-whitespace characters, then the <span class="spec-t">%</span> marker and the remainder of the line are treated as regular text.</p>
 </section>
@@ -147,7 +144,7 @@ move this up and describe the problems that KTex solves compared to other softwa
 <div class="spec-rhs"><span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><span data-name="FloatValue">FloatValue</span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#FloatValue" data-name="FloatValue">FloatValue</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
 </div>
 <p>Tokens are later used as terminal symbols in KTex syntactic grammars.</p>
@@ -155,7 +152,7 @@ move this up and describe the problems that KTex solves compared to other softwa
 <section id="sec-White-Space" secid="2.1.4">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-White-Space">2.1.4</a></span>White Space</h3>
 <div class="spec-production d2" id="WhiteSpace">
-<span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+<span class="spec-nt"><a href="#WhiteSpace" data-name="WhiteSpace">WhiteSpace</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span></span></div>
 </div>
 <div class="spec-production d2" id="WhiteSpaceChar">
 <span class="spec-nt"><a href="#WhiteSpaceChar" data-name="WhiteSpaceChar">WhiteSpaceChar</a></span><div class="spec-rhs"><span class="spec-prose">Horizontal Tab (0x09)</span></div>
@@ -285,22 +282,19 @@ do we need last char?</div>
 <section id="sec-Name" secid="2.1.10">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Name">2.1.10</a></span>Name</h3>
 <div class="spec-production d2" id="Name">
-<span class="spec-nt"><a href="#Name" data-name="Name">Name</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NameRest" data-name="NameRest">NameRest</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+<span class="spec-nt"><a href="#Name" data-name="Name">Name</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span></span></div>
 </div>
 <div class="spec-production d2" id="NameStart">
-<span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
-<tr>
-<td class="spec-rhs"><span class="spec-nt"><a href="#NameChar" data-name="NameChar">NameChar</a></span></td><td class="spec-rhs"><span class="spec-t">_</span></td></tr>
-</table></div></div>
+<span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Letter" data-name="Letter">Letter</a></span></div>
+<div class="spec-rhs"><span class="spec-t">_</span></div>
 </div>
-<div class="spec-production d2" id="NameRest">
-<span class="spec-nt"><a href="#NameRest" data-name="NameRest">NameRest</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
-<tr>
-<td class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></td><td class="spec-rhs"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span></td></tr>
-</table></div></div>
+<div class="spec-production d2" id="NameContinue">
+<span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Letter" data-name="Letter">Letter</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span></div>
+<div class="spec-rhs"><span class="spec-t">_</span></div>
 </div>
-<div class="spec-production d2" id="NameChar">
-<span class="spec-nt"><a href="#NameChar" data-name="NameChar">NameChar</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<div class="spec-production d2" id="Letter">
+<span class="spec-nt"><a href="#Letter" data-name="Letter">Letter</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
 <tr>
 <td class="spec-rhs"><span class="spec-t">a</span></td><td class="spec-rhs"><span class="spec-t">b</span></td><td class="spec-rhs"><span class="spec-t">c</span></td><td class="spec-rhs"><span class="spec-t">d</span></td><td class="spec-rhs"><span class="spec-t">e</span></td><td class="spec-rhs"><span class="spec-t">f</span></td><td class="spec-rhs"><span class="spec-t">g</span></td><td class="spec-rhs"><span class="spec-t">h</span></td><td class="spec-rhs"><span class="spec-t">i</span></td><td class="spec-rhs"><span class="spec-t">j</span></td><td class="spec-rhs"><span class="spec-t">k</span></td><td class="spec-rhs"><span class="spec-t">l</span></td><td class="spec-rhs"><span class="spec-t">m</span></td></tr>
 <tr>
@@ -321,18 +315,40 @@ do we need last char?</div>
 <section id="sec-Int-Value" secid="2.1.11">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Int-Value">2.1.11</a></span>Int Value</h3>
 <div class="spec-production d2" id="IntValue">
-<span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-t">-</span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#IntValueStart" data-name="IntValueStart">IntValueStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#IntValueRest" data-name="IntValueRest">IntValueRest</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+<span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
 </div>
-<div class="spec-production d2" id="IntValueStart">
-<span class="spec-nt"><a href="#IntValueStart" data-name="IntValueStart">IntValueStart</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-prose">except</span><span class="spec-t">0</span></div>
+<div class="spec-production d2" id="IntegerPart">
+<span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Sign" data-name="Sign">Sign</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">0</span></div>
+<div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Sign" data-name="Sign">Sign</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#NonZeroDigit" data-name="NonZeroDigit">NonZeroDigit</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
-<div class="spec-production d2" id="IntValueRest">
-<span class="spec-nt"><a href="#IntValueRest" data-name="IntValueRest">IntValueRest</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+<div class="spec-production d2" id="Sign">
+<span class="spec-nt"><a href="#Sign" data-name="Sign">Sign</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">-</span></td><td class="spec-rhs"><span class="spec-t">+</span></td></tr>
+</table></div></div>
+</div>
+<div class="spec-production d2" id="NonZeroDigit">
+<span class="spec-nt"><a href="#NonZeroDigit" data-name="NonZeroDigit">NonZeroDigit</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-butnot"><span class="spec-t">0</span></span></span></div>
 </div>
 </section>
 <section id="sec-Float-Value" secid="2.1.12">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Float-Value">2.1.12</a></span>Float Value</h3>
-<div class="spec-todo">
+<div class="spec-production d2" id="FloatValue">
+<span class="spec-nt"><a href="#FloatValue" data-name="FloatValue">FloatValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
+</div>
+<div class="spec-production d2" id="FractionalPart">
+<span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><div class="spec-rhs"><span class="spec-t">.</span><span class="spec-quantified"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+</div>
+<div class="spec-production d2" id="ExponentPart">
+<span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ExponentIndicator" data-name="ExponentIndicator">ExponentIndicator</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#Sign" data-name="Sign">Sign</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+</div>
+<div class="spec-production d2" id="ExponentIndicator">
+<span class="spec-nt"><a href="#ExponentIndicator" data-name="ExponentIndicator">ExponentIndicator</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">e</span></td><td class="spec-rhs"><span class="spec-t">E</span></td></tr>
+</table></div></div>
 </div>
 </section>
 <section id="sec-String-Value" secid="2.1.13">
@@ -341,8 +357,14 @@ do we need last char?</div>
 <span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-t">"</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">"</span></div>
 </div>
 <div class="spec-production d2" id="StringChar">
-<span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><div class="spec-rhs"><span class="spec-t">\"</span><span class="spec-prose">escaped quote</span></div>
-<div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">"</span></span></span><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></div>
+<span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">"</span><span class="spec-t">\</span><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
+<div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span></div>
+</div>
+<div class="spec-production d2" id="EscapedCharacter">
+<span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">"</span></td><td class="spec-rhs"><span class="spec-t">\</span></td></tr>
+</table></div></div>
 </div>
 </section>
 </section>
@@ -367,30 +389,35 @@ do we need last char?</div>
 <li><a href="#CarriageReturnChar">CarriageReturnChar</a></li>
 <li><a href="#Comment">Comment</a></li>
 <li><a href="#CommentCharacter">CommentCharacter</a></li>
-<li><a href="#CommentStart">CommentStart</a></li>
 <li><a href="#Dash">Dash</a></li>
 <li><a href="#Digit">Digit</a></li>
 <li><a href="#Document">Document</a></li>
 <li><a href="#Ellipsis">Ellipsis</a></li>
 <li><a href="#EscapedBracket">EscapedBracket</a></li>
+<li><a href="#EscapedCharacter">EscapedCharacter</a></li>
+<li><a href="#ExponentIndicator">ExponentIndicator</a></li>
+<li><a href="#ExponentPart">ExponentPart</a></li>
+<li><a href="#FloatValue">FloatValue</a></li>
+<li><a href="#FractionalPart">FractionalPart</a></li>
 <li><a href="#Hyphen">Hyphen</a></li>
 <li><a href="#HyphenChar">HyphenChar</a></li>
 <li><a href="#Ignored">Ignored</a></li>
+<li><a href="#IntegerPart">IntegerPart</a></li>
 <li><a href="#IntValue">IntValue</a></li>
-<li><a href="#IntValueRest">IntValueRest</a></li>
-<li><a href="#IntValueStart">IntValueStart</a></li>
+<li><a href="#Letter">Letter</a></li>
 <li><a href="#LineTerminator">LineTerminator</a></li>
 <li><a href="#Name">Name</a></li>
-<li><a href="#NameChar">NameChar</a></li>
-<li><a href="#NameRest">NameRest</a></li>
+<li><a href="#NameContinue">NameContinue</a></li>
 <li><a href="#NameStart">NameStart</a></li>
 <li><a href="#NewLineChar">NewLineChar</a></li>
+<li><a href="#NonZeroDigit">NonZeroDigit</a></li>
 <li><a href="#OperatorName">OperatorName</a></li>
 <li><a href="#Period">Period</a></li>
 <li><a href="#PeriodChar">PeriodChar</a></li>
 <li><a href="#Punctuation">Punctuation</a></li>
 <li><a href="#PunctuationChar">PunctuationChar</a></li>
 <li><a href="#Punctuator">Punctuator</a></li>
+<li><a href="#Sign">Sign</a></li>
 <li><a href="#SourceCharacter">SourceCharacter</a></li>
 <li><a href="#StringChar">StringChar</a></li>
 <li><a href="#StringValue">StringValue</a></li>
