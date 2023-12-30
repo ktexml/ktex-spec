@@ -69,6 +69,8 @@ Token ::
 - IntValue
 - FloatValue
 - StringValue
+- BooleanValue
+- NullValue
 
 Tokens are later used as terminal symbols in KTex syntactic grammars.
 
@@ -107,19 +109,27 @@ and "_preserving_" blocks.
 
 ### Punctuator
 
-Punctuator[isOperator] :: one of `=`
+When `isOperator`:
 
-Punctuator[!isOperator] :: one of `{` `}` `[` `]`
+Punctuator :: one of `=` `]`
+
+When `!isOperator`:
+
+Punctuator :: one of `{` `}` `[` `]`
 
 ### Operator Name
 
-OperatorName[!isOperator] :: `\` Name
+When `isOperator`:
 
-TODO: do we need last char?
+OperatorName :: `\` Name
+
+XXX: do we need last char?
 
 ### Punctuation
 
-Punctuation[!isOperator] ::
+When `! isOperator`:
+
+Punctuation ::
 
 - PunctuationChar
 - Period
@@ -153,7 +163,9 @@ HyphenChar :: `-`
 
 ### Words
 
-Word :: [if not isOperator] WordStart WordBody\*
+When `!isOperator`:
+
+Word :: WordStart WordBody\*
 
 WordStart :: one of WordCharacter Apostrophe
 
@@ -172,7 +184,9 @@ Note: {Apostrophe} should be escaped to avoid ambiguity with the single {Quote}.
 
 ### Name
 
-Name[!isOperator] :: NameStart NameContinue\* [lookahead != NameContinue]
+When `isOperator`:
+
+Name :: NameStart NameContinue\* [lookahead != NameContinue]
 
 NameStart ::
 
@@ -196,7 +210,9 @@ Digit :: one of `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
 
 ### Int Value
 
-IntValue[isOperator] :: IntegerPart [lookahead != {Digit, `.`, NameStart}]
+When `isOperator`:
+
+IntValue :: IntegerPart [lookahead != {Digit, `.`, NameStart}]
 
 IntegerPart ::
 
@@ -209,7 +225,9 @@ NonZeroDigit :: Digit but not `0`
 
 ### Float Value
 
-FloatValue[isOperator] ::
+When `isOperator`:
+
+FloatValue ::
 
 - IntegerPart FractionalPart ExponentPart [lookahead != {Digit, `.`, NameStart}]
 - IntegerPart FractionalPart [lookahead != {Digit, `.`, NameStart}]
@@ -223,7 +241,9 @@ ExponentIndicator :: one of `e` `E`
 
 ### String Value
 
-StringValue[isOperator] :: `"` StringChar\* `"`
+When `isOperator`:
+
+StringValue :: `"` StringChar\* `"`
 
 StringChar ::
 
@@ -231,6 +251,18 @@ StringChar ::
 - `\` EscapedCharacter
 
 EscapedCharacter :: one of `"` `\`
+
+### Boolean Value
+
+When `isOperator`:
+
+BooleanValue :: one of `true` `false`
+
+### Null Value
+
+When `isOperator`:
+
+NullValue :: `null`
 
 ## Operators
 
