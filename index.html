@@ -49,6 +49,8 @@
 <li><a href="#sec-Int-Value"><span class="spec-secid">2.1.11</span>Int Value</a></li>
 <li><a href="#sec-Float-Value"><span class="spec-secid">2.1.12</span>Float Value</a></li>
 <li><a href="#sec-String-Value"><span class="spec-secid">2.1.13</span>String Value</a></li>
+<li><a href="#sec-Boolean-Value"><span class="spec-secid">2.1.14</span>Boolean Value</a></li>
+<li><a href="#sec-Null-Value"><span class="spec-secid">2.1.15</span>Null Value</a></li>
 </ol>
 </li>
 <li><a href="#sec-Operators"><span class="spec-secid">2.2</span>Operators</a></li>
@@ -146,6 +148,8 @@ move this up and describe the problems that KTex solves compared to other softwa
 <div class="spec-rhs"><span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#FloatValue" data-name="FloatValue">FloatValue</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#BooleanValue" data-name="BooleanValue">BooleanValue</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#NullValue" data-name="NullValue">NullValue</a></span></div>
 </div>
 <p>Tokens are later used as terminal symbols in KTex syntactic grammars.</p>
 </section>
@@ -180,14 +184,16 @@ move this up and describe the problems that KTex solves compared to other softwa
 </section>
 <section id="sec-Punctuator" secid="2.1.6">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Punctuator">2.1.6</a></span>Punctuator</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="Punctuator">
-<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
 <tr>
-<td class="spec-rhs"><span class="spec-t">=</span></td></tr>
+<td class="spec-rhs"><span class="spec-t">=</span></td><td class="spec-rhs"><span class="spec-t">]</span></td></tr>
 </table></div></div>
 </div>
+<p>When <code>!isOperator</code>:</p>
 <div class="spec-production d2" id="Punctuator">
-<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<span class="spec-nt"><a href="#Punctuator" data-name="Punctuator">Punctuator</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
 <tr>
 <td class="spec-rhs"><span class="spec-t">{</span></td><td class="spec-rhs"><span class="spec-t">}</span></td><td class="spec-rhs"><span class="spec-t">[</span></td><td class="spec-rhs"><span class="spec-t">]</span></td></tr>
 </table></div></div>
@@ -195,16 +201,19 @@ move this up and describe the problems that KTex solves compared to other softwa
 </section>
 <section id="sec-Operator-Name" secid="2.1.7">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Operator-Name">2.1.7</a></span>Operator Name</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="OperatorName">
-<span class="spec-nt"><a href="#OperatorName" data-name="OperatorName">OperatorName</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<span class="spec-nt"><a href="#OperatorName" data-name="OperatorName">OperatorName</a></span><div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
 </div>
-<div class="spec-todo">
-do we need last char?</div>
+<div class="spec-production" id="XXX">
+<span class="spec-nt"><a href="#XXX" data-name="XXX">XXX</a></span><div class="spec-rhs"><span class="spec-t">do</span><span class="spec-t">we</span><span class="spec-t">need</span><span class="spec-t">last</span><span class="spec-t">char?</span></div>
+</div>
 </section>
 <section id="sec-Punctuation" secid="2.1.8">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Punctuation">2.1.8</a></span>Punctuation</h3>
+<p>When <code>! isOperator</code>:</p>
 <div class="spec-production d2" id="Punctuation">
-<span class="spec-nt"><a href="#Punctuation" data-name="Punctuation">Punctuation</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#PunctuationChar" data-name="PunctuationChar">PunctuationChar</a></span></div>
+<span class="spec-nt"><a href="#Punctuation" data-name="Punctuation">Punctuation</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#PunctuationChar" data-name="PunctuationChar">PunctuationChar</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Period" data-name="Period">Period</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Ellipsis" data-name="Ellipsis">Ellipsis</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Dash" data-name="Dash">Dash</a></span></div>
@@ -250,8 +259,9 @@ do we need last char?</div>
 </section>
 <section id="sec-Words" secid="2.1.9">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Words">2.1.9</a></span>Words</h3>
+<p>When <code>!isOperator</code>:</p>
 <div class="spec-production d2" id="Word">
-<span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span><div class="spec-rhs"><span class="spec-condition not">isOperator</span><span class="spec-nt"><a href="#WordStart" data-name="WordStart">WordStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#WordBody" data-name="WordBody">WordBody</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+<span class="spec-nt"><a href="#Word" data-name="Word">Word</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#WordStart" data-name="WordStart">WordStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#WordBody" data-name="WordBody">WordBody</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production d2" id="WordStart">
 <span class="spec-nt"><a href="#WordStart" data-name="WordStart">WordStart</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
@@ -281,8 +291,9 @@ do we need last char?</div>
 </section>
 <section id="sec-Name" secid="2.1.10">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Name">2.1.10</a></span>Name</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="Name">
-<span class="spec-nt"><a href="#Name" data-name="Name">Name</a><span class="spec-params"><span class="spec-param negated">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span></span></div>
+<span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-lookahead ntset not"><span class="spec-nt"><a href="#NameContinue" data-name="NameContinue">NameContinue</a></span></span></div>
 </div>
 <div class="spec-production d2" id="NameStart">
 <span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Letter" data-name="Letter">Letter</a></span></div>
@@ -314,8 +325,9 @@ do we need last char?</div>
 </section>
 <section id="sec-Int-Value" secid="2.1.11">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Int-Value">2.1.11</a></span>Int Value</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="IntValue">
-<span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
+<span class="spec-nt"><a href="#IntValue" data-name="IntValue">IntValue</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
 </div>
 <div class="spec-production d2" id="IntegerPart">
 <span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Sign" data-name="Sign">Sign</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">0</span></div>
@@ -333,8 +345,9 @@ do we need last char?</div>
 </section>
 <section id="sec-Float-Value" secid="2.1.12">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Float-Value">2.1.12</a></span>Float Value</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="FloatValue">
-<span class="spec-nt"><a href="#FloatValue" data-name="FloatValue">FloatValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
+<span class="spec-nt"><a href="#FloatValue" data-name="FloatValue">FloatValue</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#FractionalPart" data-name="FractionalPart">FractionalPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#IntegerPart" data-name="IntegerPart">IntegerPart</a></span><span class="spec-nt"><a href="#ExponentPart" data-name="ExponentPart">ExponentPart</a></span><span class="spec-lookahead set not"><span class="spec-nt"><a href="#Digit" data-name="Digit">Digit</a></span><span class="spec-t">.</span><span class="spec-nt"><a href="#NameStart" data-name="NameStart">NameStart</a></span></span></div>
 </div>
@@ -353,8 +366,9 @@ do we need last char?</div>
 </section>
 <section id="sec-String-Value" secid="2.1.13">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">2.1.13</a></span>String Value</h3>
+<p>When <code>isOperator</code>:</p>
 <div class="spec-production d2" id="StringValue">
-<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a><span class="spec-params"><span class="spec-param">isOperator</span></span></span><div class="spec-rhs"><span class="spec-t">"</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">"</span></div>
+<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">"</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">"</span></div>
 </div>
 <div class="spec-production d2" id="StringChar">
 <span class="spec-nt"><a href="#StringChar" data-name="StringChar">StringChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">"</span><span class="spec-t">\</span><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
@@ -365,6 +379,23 @@ do we need last char?</div>
 <tr>
 <td class="spec-rhs"><span class="spec-t">"</span></td><td class="spec-rhs"><span class="spec-t">\</span></td></tr>
 </table></div></div>
+</div>
+</section>
+<section id="sec-Boolean-Value" secid="2.1.14">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Boolean-Value">2.1.14</a></span>Boolean Value</h3>
+<p>When <code>isOperator</code>:</p>
+<div class="spec-production d2" id="BooleanValue">
+<span class="spec-nt"><a href="#BooleanValue" data-name="BooleanValue">BooleanValue</a></span><div class="spec-oneof"><div class="spec-oneof-grid"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">true</span></td><td class="spec-rhs"><span class="spec-t">false</span></td></tr>
+</table></div></div>
+</div>
+</section>
+<section id="sec-Null-Value" secid="2.1.15">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Null-Value">2.1.15</a></span>Null Value</h3>
+<p>When <code>isOperator</code>:</p>
+<div class="spec-production d2" id="NullValue">
+<span class="spec-nt"><a href="#NullValue" data-name="NullValue">NullValue</a></span><div class="spec-rhs"><span class="spec-t">null</span></div>
 </div>
 </section>
 </section>
@@ -385,6 +416,7 @@ do we need last char?</div>
 <span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1>
 <ol>
 <li><a href="#Apostrophe">Apostrophe</a></li>
+<li><a href="#BooleanValue">BooleanValue</a></li>
 <li><a href="#BracketChar">BracketChar</a></li>
 <li><a href="#CarriageReturnChar">CarriageReturnChar</a></li>
 <li><a href="#Comment">Comment</a></li>
@@ -411,6 +443,7 @@ do we need last char?</div>
 <li><a href="#NameStart">NameStart</a></li>
 <li><a href="#NewLineChar">NewLineChar</a></li>
 <li><a href="#NonZeroDigit">NonZeroDigit</a></li>
+<li><a href="#NullValue">NullValue</a></li>
 <li><a href="#OperatorName">OperatorName</a></li>
 <li><a href="#Period">Period</a></li>
 <li><a href="#PeriodChar">PeriodChar</a></li>
@@ -429,6 +462,7 @@ do we need last char?</div>
 <li><a href="#WordBody">WordBody</a></li>
 <li><a href="#WordCharacter">WordCharacter</a></li>
 <li><a href="#WordStart">WordStart</a></li>
+<li><a href="#XXX">XXX</a></li>
 </ol>
 </section>
 </article>
@@ -465,6 +499,8 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_2.1.11"><a href="#sec-Int-Value"><span class="spec-secid">2.1.11</span>Int Value</a></li>
 <li id="_sidebar_2.1.12"><a href="#sec-Float-Value"><span class="spec-secid">2.1.12</span>Float Value</a></li>
 <li id="_sidebar_2.1.13"><a href="#sec-String-Value"><span class="spec-secid">2.1.13</span>String Value</a></li>
+<li id="_sidebar_2.1.14"><a href="#sec-Boolean-Value"><span class="spec-secid">2.1.14</span>Boolean Value</a></li>
+<li id="_sidebar_2.1.15"><a href="#sec-Null-Value"><span class="spec-secid">2.1.15</span>Null Value</a></li>
 </ol>
 </li>
 <li id="_sidebar_2.2"><a href="#sec-Operators"><span class="spec-secid">2.2</span>Operators</a></li>
